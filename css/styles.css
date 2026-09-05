@@ -40,32 +40,32 @@
 
 /* ── DARK THEME (optional toggle) ── */
 [data-theme="dark"] {
-  --bg:        #1A0F0D;  /* very dark warm brown */
-  --bg2:       #241715;  /* slightly lighter */
-  --bg3:       #2E1D1A;  /* card surfaces */
-  --bg4:       #38231F;  /* peach elevated */
+  --bg:        #0F1424;  /* cool dark navy — complements teal/blue logo */
+  --bg2:       #171D33;  /* slightly lighter */
+  --bg3:       #212844;  /* card surfaces */
+  --bg4:       #2C3555;  /* elevated */
   --card:      rgba(255,255,255,0.04);
   --card-h:    rgba(255,122,101,0.07);
-  --primary:   #FF7A65;  /* lighter tomato (more visible on dark) */
-  --primary2:  #FF5C45;  /* main tomato as hover */
+  --primary:   #FF7A65;  /* lighter tomato (kept — consistent with light theme brand) */
+  --primary2:  #FF5C45;
   --primglow:  rgba(255,122,101,0.20);
-  --violet:    #FF80C0;  /* light pink */
-  --violet2:   rgba(255,128,192,0.16);
-  --lime:      #5EEAD4;  /* light teal */
+  --violet:    #7DC5C1;  /* light teal — matches logo left wing */
+  --violet2:   rgba(125,197,193,0.16);
+  --lime:      #5EEAD4;
   --limeglow:  rgba(94,234,212,0.13);
   --amber:     #FBBF24;
   --amberglow: rgba(251,191,36,0.15);
-  --text:      #FFF5F0;  /* warm white */
-  --text2:     #D6C0B8;  /* warm light gray */
-  --muted:     #8C766C;
+  --text:      #F1F5F9;  /* cool near-white */
+  --text2:     #CBD5E1;  /* cool light gray */
+  --muted:     #7A8494;  /* cool muted */
   --border:    rgba(255,255,255,0.07);
   --borderc:   rgba(255,122,101,0.25);
   --shadow:    0 8px 40px rgba(0,0,0,0.5);
   --shadow-c:  0 8px 40px rgba(255,122,101,0.15);
-  --sec-alt:   #241715;
+  --sec-alt:   #171D33;
   --input-bg:  rgba(255,255,255,0.04);
   --input-bor: rgba(255,255,255,0.10);
-  --cs-overlay: rgba(26,15,13,0.82);
+  --cs-overlay: rgba(15,20,36,0.82);
   --cs-badge-bg: rgba(251,191,36,0.15);
   --cs-badge-bor: rgba(251,191,36,0.40);
   --cs-badge-text: #FBBF24;
@@ -118,7 +118,19 @@ nav.compact { height: 56px; box-shadow: var(--shadow); }
   color: var(--text); letter-spacing: -.02em; text-decoration: none;
   z-index: 250;
 }
-.logo em { color: var(--primary); font-style: normal; }
+/* Wordmark image — replaces old typed "Welt<em>tos</em>" text */
+.logo-wordmark {
+  height: 26px;  /* scales with logo mark height */
+  width: auto;
+  display: block;
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.logo:hover .logo-wordmark { transform: translateX(2px); }
+[data-theme="light"] .logo-wordmark-dark { display: none; }
+[data-theme="dark"] .logo-wordmark-light { display: none; }
+/* Smaller wordmark in footer (matches .logo-mark-sm) */
+.logo-mark-sm + .logo-wordmark,
+.logo-mark-sm ~ .logo-wordmark { height: 20px; }
 .logo-mark {
   width: 42px; height: 42px; border-radius: 10px;
   margin-right: 10px; display: flex; align-items: center; justify-content: center;
@@ -1167,3 +1179,11 @@ body.sidebar-open .whatsapp-fab {
 @media (prefers-reduced-motion: reduce) {
   .whatsapp-fab { animation: none; }
 }
+
+/* ════════════════════════════════════════════════════════════
+   THEME-SWAPPABLE LOGO
+   Light theme shows orange logo, dark theme shows teal/blue logo
+═══════════════════════════════════════════════════════════ */
+.logo-img { display: block; width: 100%; height: 100%; }
+[data-theme="light"] .logo-img-dark { display: none; }
+[data-theme="dark"] .logo-img-light { display: none; }
